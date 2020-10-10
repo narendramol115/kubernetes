@@ -1,0 +1,36 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.define "k8s-master1" do |t1|
+    t1.vm.hostname = "kmaster1"
+    t1.vm.network "public_network", ip: "192.168.2.111"
+    t1.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+    end
+  end
+   config.vm.define "k8s-master2" do |t2|
+    t2.vm.hostname = "kmaster2"
+    t2.vm.network "public_network", ip: "192.168.2.112"
+    t2.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+    end
+  end
+   config.vm.define "k8s-master3" do |t3|
+    t3.vm.hostname = "kmaster3"
+    t3.vm.network "public_network", ip: "192.168.2.113"
+    t3.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+    end
+  end
+   config.vm.define "k8s-worker1" do |t4|
+    t4.vm.hostname = "kworker1"
+    t4.vm.network "public_network", ip: "192.168.2.114"
+  end
+  config.vm.define "k8s-worker2" do |t5|
+    t5.vm.hostname = "kworker2"
+    t5.vm.network "public_network", ip: "192.168.2.115"
+  end
+  config.vm.define "Ha-proxy" do |t6|
+    t6.vm.hostname = "Ha-proxy"
+    t6.vm.network "public_network", ip: "192.168.2.116"
+  end
+end

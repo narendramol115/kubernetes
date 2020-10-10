@@ -1,0 +1,25 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.define "test1" do |test1|
+    test1.vm.hostname = "kmaster"
+    test1.vm.network "public_network", ip: "192.168.2.110"
+    test1.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = "2"
+    end
+  end
+  config.vm.define "test2" do |test2|
+    test2.vm.hostname = "kworker1"
+    test2.vm.network "public_network", ip: "192.168.2.120"
+    test2.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+  end
+  config.vm.define "test3" do |test3|
+    test3.vm.hostname = "kworker2"
+    test3.vm.network "public_network", ip: "192.168.2.130"
+    test3.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+  end
+end
